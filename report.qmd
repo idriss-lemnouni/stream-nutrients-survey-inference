@@ -1,0 +1,40 @@
+---
+title: "Stream nutrient survey inference"
+subtitle: "EPA National Rivers and Streams Assessment, 2018–2019"
+format:
+  html:
+    embed-resources: true
+    toc: true
+---
+
+## Scope
+
+This analysis uses the first probability visit at each station in the released EPA population-estimates table. The target is the distribution of nutrient concentrations over the river and stream length represented by the sample. The study estimates concentrations in the 2018–2019 campaign.
+
+## Design and censoring
+
+The primary estimates use adjusted target-population weights in miles and the strata from the site-information table. We compare weighted and unweighted means on the same usable observations. Intervals use 500 Rao–Wu rescaled bootstrap replicates within strata. This approximation does not use EPA's spatial local-neighbourhood variance estimator. The weight coverage column is the observed weight divided by the total weight in each domain.
+
+Detected values are converted to a common analyte-specific unit. A measurement below its method detection limit or flagged ND is represented by zero, half the limit or the full limit in the sensitivity analysis. Reported method limits take precedence over reporting limits. Results carrying the Q or H quality flags are excluded. A generic L flag can accompany an above-limit result, so the recorded value and limit govern censoring for those observations.
+
+## National results
+
+{{< include runs/national.qmd >}}
+
+## Aggregated ecoregions
+
+{{< include runs/ecoregions.qmd >}}
+
+## Multivariate summaries
+
+Weighted PCA uses log-transformed complete cases and their weighted correlation matrix. The survey-weighted Gaussian model relates log-transformed phosphorus to nitrate and ecoregion. Its coefficients describe associations within the analysed sample.
+
+{{< include runs/pca.qmd >}}
+
+{{< include runs/glm.qmd >}}
+
+## Data and interpretation
+
+The data are maintained by the U.S. Environmental Protection Agency in collaboration with state, tribal and federal partners. This analysis compares estimates under stated censoring and weighting choices. Missingness can affect available-case estimates, and the campaign design limits extrapolation beyond its population and years.
+
+[EPA data downloads](https://www.epa.gov/national-aquatic-resource-surveys/data-national-aquatic-resource-surveys) · [EPA technical support document](https://www.epa.gov/system/files/documents/2024-12/nrsa-2018-19-tsd-final-11252024.pdf)

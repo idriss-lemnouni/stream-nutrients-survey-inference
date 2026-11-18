@@ -1,0 +1,6 @@
+data/raw/
+runs/
+_site/
+.quarto/
+.Rhistory
+.Rproj.user/
